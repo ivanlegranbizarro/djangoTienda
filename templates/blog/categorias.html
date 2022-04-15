@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% for post in object_list %}
+        <section class="page-section clearfix" style="margin-bottom: 200px;">
+            <div class="container">
+                <div class="intro">
+                    {% if post.imagen %}
+                        <img src="{{ post.imagen.url }}" alt="" style="width: 50%"/>
+                    {% else %}
+                        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded"
+                             src="{% static 'home/img/principal.jpg' %}"
+                             alt=""
+                             style="width: 50%">
+                    {% endif %}
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-upper">{{ post.nombre }}</span>
+                            <span class="section-heading-lower">{{ post.contenido }}</span>
+                        </h2>
+                        <div style="text-align: left; font-size: 0.8em;">Autor: {{ post.autor }}</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endfor %}
+    <section>
+        <div style="width: 75%; margin: auto; text-align: center; color:white;">
+            Categoría:
+            {% for post in object_list %}
+                {% for categoria in post.categorias.all %}{{ categoria.nombre }}{% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content %}

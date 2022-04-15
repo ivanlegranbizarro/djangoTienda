@@ -1,0 +1,1 @@
+Proyecto web completo realizado con Django. Todo es funcional. Formulario de contacto, cómputo de las compras en el carrito de compras, etc. Lo que más me interesaba del sitio era su funcionalidad para poner en práctica los conocimientos de Backend con Django. Es ahí donde está puesto el foco, y no en su estética, que es realmente sencilla.

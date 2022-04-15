@@ -1,0 +1,111 @@
+{% load static %}
+{% url 'home:home' as home %}
+{% url 'servicios:lista-servicios' as servicios %}
+{% url 'blog:list-posts' as posts %}
+{% url 'contacto:contacto' as contacto %}
+{% url 'tienda:lista-productos' as tienda %}
+<html>
+    <head>
+        <!-- Bootstrap -->
+        <link href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css' %}"
+              rel="stylesheet">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+              rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i"
+              rel="stylesheet">
+        <!-- Styles -->
+        <link href="{% static 'home/css/gestion.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <h1 class="site-heading text-center text-white d-none d-lg-block">
+            <span class="site-heading-lower">Gestión de Pedidos</span>
+        </h1>
+        <div style="text-align: right; margin-right: 100px; color: white;">
+            {% if request.user.is_authenticated %}
+                Saludos, {{ user.username }} &nbsp; &nbsp; <a href="{% url 'autenticacion:logout' %}" style="color: white;">Cerrar sesión</a>
+            {% else %}
+                <a href="{% url 'autenticacion:login' %}" style="color: white;">Login</a> &nbsp; &nbsp;
+            <a href="{% url 'autenticacion:autenticacion' %}" style="color: white;">Regístrate</a>
+        {% endif %}
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none"
+               href="{% url 'home:home' %}">Gestión de Pedidos</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item px-lg-4 {% if request.path == home %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded"
+                           href="{% url 'home:home' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item px-lg-4 {% if request.path == servicios %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded"
+                           href="{% url 'servicios:lista-servicios' %}">Servicios</a>
+                    </li>
+                    <li class="nav-item px-lg-4 {% if request.path == tienda %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded"
+                           href="{% url 'tienda:lista-productos' %}">Tienda</a>
+                    </li>
+                    <li class="nav-item px-lg-4  {% if request.path == contacto %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded"
+                           href="{% url 'contacto:contacto' %}">Contacto</a>
+                    </li>
+                    <li class="nav-item px-lg-4 {% if request.path == posts or 'blog' in request.path %}active{% endif %}">
+                        <a class="nav-link text-uppercase text-expanded"
+                           href="{% url 'blog:list-posts' %}">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock content %}
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+        <div class="container">
+            <p class="m-0">
+                <a href="#" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <a href="#" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                <a href="#" class="link">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </p>
+            <p class="m-0 mbt">
+                <a href="sample.html" class="link">Política de privacidad</a> ·
+            <a href="sample.html" class="link">Aviso legal</a> ·
+        <a href="sample.html" class="link">Cookies</a>
+    </p>
+    <p class="m-0 mbt1">
+        &copy; Gestión de Pedidos {% now 'Y' %}
+    </p>
+</div>
+</footer>
+<!-- Bootstrap -->
+<script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
